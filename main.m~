@@ -91,7 +91,7 @@ for i = 1:shifts_in_month
         end
     end
     if error == 1
-        fprintf('Warning: no doctor can work shift number %d\n',i);
+        fprintf('Warning: no doctor can work shift number %d',i);
         break;
     end
 end
@@ -134,7 +134,7 @@ for t = 2:shifts_in_month % every shift will get filled
     [prev_rank,prev_rank_index] = sort(T(t-1,:), 'descend');
     
     if sum(prev_rank == -1) == num_doctors - 1 % if no one else is is available for previous timestep
-        fprintf('Warning: someone must double shift at shift %d\n',t);
+        fprintf('Warning: someone must double shift!');
         T_solution(t) = T_solution(t-1);
         
     elseif (t < 3 || T_solution(t-2) ~= prev_rank(2)) % if the second choice isn't a double shift
